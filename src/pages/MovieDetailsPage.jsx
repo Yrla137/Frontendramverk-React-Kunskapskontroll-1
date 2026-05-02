@@ -3,13 +3,16 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
-const MovieDetailsPage = ({}) => {
+const MovieDetailsPage = ({favorites, addToFavorites}) => {
   const {id} = useParams()
 
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const isFavorite = favorites.some(
+    (favorite) => favorite.imdbID === movie?.imdbID
+  );
 
     const fetchMovie = async () => {
       
@@ -74,6 +77,10 @@ const MovieDetailsPage = ({}) => {
             <p>Country: {movie.Country}</p>
             <p>Language: {movie.Language}</p>
           </div>
+
+          <button onClick={() => {
+            addToFavorites(movie)}}>
+            {isFavorite ? "Remove from favorites❤️" : "Add to favorites❤️"}</button>
 
     </div>
   )

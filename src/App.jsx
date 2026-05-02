@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Home from './pages/Home'
 import MoviesPage from './pages/MoviesPage'
 import Nav from './components/Nav'
@@ -8,12 +8,48 @@ import FavoritesPage from './pages/FavoritesPage'
 
 const App = () => {
 
-  const [favorites, setFavorites] = useState([]);
+const [favorites, setFavorites] = useState(() => {
 
-  const addToFavorites = (movie) => {
-    setFavorites([...favorites, movie])
+  const savedData = localStorage.getItem("favorites");
+
+  if (savedData) {
+    return JSON.parse(savedData);
+  }
+  return [];
+});
+
+
+
+const addToFavorites = (movie) => {
+  if(favorites.some(favorite =>
+     favorite.imdbID === movie.imdbID))
+      setFavorites(prev=>
+      prev.filter(prev => prev.imdbID !== movie.imdbID))
+    else{
+       setFavorites(prev => [...prev, movie]);
+    }
+}
+
+
+useEffect(() => {
+  localStorage.setItem("favorites", JSON.stringify(favorites));
+
+}, [favorites]); // 🔁 körs varje gång favorites ändras
+
+
+
+
+
+  const deleteFavorite = (imdbID) => {
+    setFavorites((prevFavorite) =>
+    prevFavorite.filter(favorite => favorite.imdbID !== imdbID))
   }
 
+  const updateFavorite = (imdbID, updatedData) => {
+  setFavorites((prevFavorites) =>
+    prevFavorites.map((favorite) => favorite.imdbID === imdbID
+  ? { ...favorite, ...updatedData }
+  : favorite))};
 
   
 
@@ -23,9 +59,17 @@ const App = () => {
         <Nav/>
         <Routes>
           <Route path='/' element={< Home />}/>
-          <Route path='/movies' element={< MoviesPage addToFavorites={addToFavorites}/>}/>
-          <Route path='/movie/:id' element={< MovieDetailsPage/>}/>
-          <Route path='/favorites' element={< FavoritesPage/>}/>
+          <Route path='/movies' element={< MoviesPage
+            addToFavorites={addToFavorites}
+            favorites={favorites}/>}/>
+          <Route path='/movie/:id' element={< MovieDetailsPage
+            addToFavorites={addToFavorites}
+            favorites={favorites}/>}/>
+          <Route path='/favorites'
+          element={< FavoritesPage
+          favorites={favorites}
+          deleteFavorite={deleteFavorite}
+          updateFavorite={updateFavorite}/>}/>
         </Routes>
         </BrowserRouter>
 

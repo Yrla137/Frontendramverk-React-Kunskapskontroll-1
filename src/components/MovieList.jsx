@@ -1,7 +1,7 @@
 import MovieItem from "../components/MovieItem"
 
 
-const MovieList = ({movies, addToFavorites}) => {
+const MovieList = ({movies, favorites, addToFavorites}) => {
     if(!movies.length) {
         return <div><p>No movies found</p></div>;
     }
@@ -13,7 +13,8 @@ const MovieList = ({movies, addToFavorites}) => {
 
                     <MovieItem
                     movie={movie}
-                    addToFavorites={addToFavorites}/>
+                    addToFavorites={addToFavorites}
+                    favorites={favorites}/>
 
                 </div>
             )}

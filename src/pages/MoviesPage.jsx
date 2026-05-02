@@ -3,7 +3,7 @@ import { getAllMovies} from "../api/dataApi"
 import MovieList from "../components/MovieList"
 import SearchBar from "../components/SearchBar";
 
-const MoviesPage = ({addToFavorites}) => {
+const MoviesPage = ({addToFavorites, favorites}) => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -66,6 +66,7 @@ const MoviesPage = ({addToFavorites}) => {
             <MovieList
             movies={movies}
             addToFavorites={addToFavorites}
+            favorites={favorites}
             />
         </div>
     )
