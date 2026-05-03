@@ -9,11 +9,17 @@ const FavoritesPage = ({favorites, updateFavorite, deleteFavorite}) => {
 
 
   const handleSave = () => {
+    if (!editComment.trim()) {
+      updateFavorite(editingId, { comment: "" });
+      setEditingId(null);
+      return;
+    }
     updateFavorite(editingId, {
       comment: editComment
     })
     setEditingId(null)
   }
+
 
   return (
     <div>
@@ -27,32 +33,38 @@ const FavoritesPage = ({favorites, updateFavorite, deleteFavorite}) => {
                 <img src={favorite.Poster} alt={favorite.Title} />
             </Link>
 
-            {editingId === favorite.imdbID ? (
+
+          {editingId === favorite.id ? (
               <div>
                 <textarea 
-                  placeholder="Comment..."
+                  placeholder="Your comment..."
                   value={editComment}
                   onChange={(e) => setEditComment(e.target.value)}
-                  onKeyDown={(e) => {
-                    if(e.key === "Enter"){
-                      handleSave()
-                    }}}
                 />
 
                 <button onClick={handleSave}>Save</button>
                 <button onClick={() => setEditingId(null)}>Cancel</button>
               </div>
-            ): (
-                <button
-                  onClick={() => {
+          ) : (
+            (favorite.comment ? (
+            <div>
+              <p>{favorite.comment}</p>
+              <button onClick={() => {
                     setEditComment(favorite.comment || "")
-                    setEditingId(favorite.imdbID)
-                  }}>Edit</button>
-            )}
+                    setEditingId(favorite.id)
+              }}>Edit</button>
+              <button onClick={() => updateFavorite(favorite.id, {comment: ""})}>Delete comment</button>
+            
+            </div>
+            ) : (
+                <button onClick={() => {
+                  setEditComment("")
+                  setEditingId(favorite.id)
+                }}>Add a comment</button>
+            ))
+          )}
 
-            <p>{favorite.comment}</p>
-
-          <button onClick={() => deleteFavorite(favorite.imdbID)}>Delete favorite</button>
+          <button onClick={() => deleteFavorite(favorite.id)}>Delete favorite</button>
         </div>)}
     </div>)}
 

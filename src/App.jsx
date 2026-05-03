@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { getFavorites } from "./api/dataApi";
+import { addFavoriteApi, deleteFavoriteApi, updateFavoriteApi } from "./api/dataApi";
 import Home from './pages/Home'
 import MoviesPage from './pages/MoviesPage'
 import Nav from './components/Nav'
@@ -8,49 +10,54 @@ import FavoritesPage from './pages/FavoritesPage'
 
 const App = () => {
 
-const [favorites, setFavorites] = useState(() => {
-
-  const savedData = localStorage.getItem("favorites");
-
-  if (savedData) {
-    return JSON.parse(savedData);
-  }
-  return [];
-});
-
-
-
-const addToFavorites = (movie) => {
-  if(favorites.some(favorite =>
-     favorite.imdbID === movie.imdbID))
-      setFavorites(prev=>
-      prev.filter(prev => prev.imdbID !== movie.imdbID))
-    else{
-       setFavorites(prev => [...prev, movie]);
-    }
-}
-
+const [favorites, setFavorites] = useState([]);
 
 useEffect(() => {
-  localStorage.setItem("favorites", JSON.stringify(favorites));
+  const loadFavorites = async () => {
+    const data = await getFavorites();
+    setFavorites(data);
+  };
 
-}, [favorites]); // 🔁 körs varje gång favorites ändras
+  loadFavorites();
+}, []);
 
 
+const addToFavorites = async (movie) => {
+  const existing = favorites.find(favorite => favorite.imdbID === movie.imdbID);
 
-
-
-  const deleteFavorite = (imdbID) => {
-    setFavorites((prevFavorite) =>
-    prevFavorite.filter(favorite => favorite.imdbID !== imdbID))
+  if (existing) {
+  await deleteFavoriteApi(existing.id);
+  setFavorites(prev =>
+    prev.filter(favorite => favorite.id !== existing.id)
+  );
   }
+  else {
+    const newFavorite = await addFavoriteApi(movie);
+    setFavorites(prev => [...prev, newFavorite]);
+  }}
 
-  const updateFavorite = (imdbID, updatedData) => {
-  setFavorites((prevFavorites) =>
-    prevFavorites.map((favorite) => favorite.imdbID === imdbID
-  ? { ...favorite, ...updatedData }
-  : favorite))};
 
+  const deleteFavorite = async (id) => {
+    await deleteFavoriteApi(id);
+
+    setFavorites(prev =>
+      prev.filter(favorite => favorite.id !== id)
+    );
+  };
+
+
+  const updateFavorite = async (id, updatedData) => {
+  const updated = await updateFavoriteApi(id, updatedData);
+
+  if(!updated || !updated.id) return;
+
+  setFavorites(prev =>
+    prev.map(favorite =>
+      favorite.id === id
+      ? {...favorite, ...updated}
+      : favorite)
+  );
+};
   
 
   return (
@@ -79,16 +86,4 @@ useEffect(() => {
 }
 
 export default App
-
-
-  // const addToFavorites = (movie) => {
-// movie i (movie) är bara ett namn man själv väljer, värdet som skickas in kommer från där funktionen anropas.
-// const addToFavorites = (movie) => {
-// 👉 betyder:
-// “när någon anropar denna funktion, ge mig ett värde → jag kallar det movie”
-
-// 🧠 Så var kommer värdet ifrån?
-// Inte från state.
-// Inte automatiskt.
-// 👉 Det kommer från din knapp i MovieItem
 

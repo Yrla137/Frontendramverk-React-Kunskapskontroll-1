@@ -29,42 +29,86 @@ export const getMovieById = async (id) => {
   }
 };
 
-// CREATE //
-export const createMovie = async (movieData) => {
-  try {
-    const response = await apiClient.post("/=s", movieData);
-    return response.data;
-  } catch (error) {
-    throw new Error(`Failed to create movie: ${error.message}`, { cause: error });
-  }
+
+// FAVORITES (JSON SERVER) //
+
+const FAVORITES_URL = "http://localhost:3001/favorites";
+
+// GET all favorites
+export const getFavorites = async () => {
+  const res = await fetch(FAVORITES_URL);
+  return res.json();
 };
 
-// PATCH (UPDATE) //
-export const updateMovie = async (id, movieData) => {
-  try {
-    const response = await apiClient.patch(`/i=${id}`, movieData);
-    return response.data;
-  } catch (error) {
-    throw new Error(`Failed to update movie ${id}: ${error.message}`, { cause: error });
-  }
+// ADD favorite
+export const addFavoriteApi = async (movie) => {
+  const res = await fetch(FAVORITES_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(movie),
+  });
+  return res.json();
 };
 
-// PUT (REPLACE) //
-export const replaceMovie = async (id, movieData) => {
-  try {
-    const response = await apiClient.put(`/i=${id}`, movieData);
-    return response.data;
-  } catch (error) {
-    throw new Error(`Failed to replace movie ${id}: ${error.message}`, { cause: error });
-  }
+// DELETE favorite
+export const deleteFavoriteApi = async (id) => {
+  await fetch(`${FAVORITES_URL}/${id}`, {
+    method: "DELETE",
+  });
 };
 
-// DELETE //
-export const deleteMovie = async (id) => {
-  try {
-    const response = await apiClient.delete(`/i=${id}`);
-    return response.data;
-  } catch (error) {
-    throw new Error(`Failed to delete movie ${id}: ${error.message}`, { cause: error });
-  }
+// UPDATE favorite (comment etc)
+export const updateFavoriteApi = async (id, updatedData) => {
+  const res = await fetch(`${FAVORITES_URL}/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedData),
+  });
+  return res.json();
 };
+
+
+
+// // CREATE //
+// export const createMovie = async (movieData) => {
+//   try {
+//     const response = await apiClient.post("/=s", movieData);
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(`Failed to create movie: ${error.message}`, { cause: error });
+//   }
+// };
+
+// // PATCH (UPDATE) //
+// export const updateMovie = async (id, movieData) => {
+//   try {
+//     const response = await apiClient.patch(`/i=${id}`, movieData);
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(`Failed to update movie ${id}: ${error.message}`, { cause: error });
+//   }
+// };
+
+// // PUT (REPLACE) //
+// export const replaceMovie = async (id, movieData) => {
+//   try {
+//     const response = await apiClient.put(`/i=${id}`, movieData);
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(`Failed to replace movie ${id}: ${error.message}`, { cause: error });
+//   }
+// };
+
+// // DELETE //
+// export const deleteMovie = async (id) => {
+//   try {
+//     const response = await apiClient.delete(`/i=${id}`);
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(`Failed to delete movie ${id}: ${error.message}`, { cause: error });
+//   }
+// };
