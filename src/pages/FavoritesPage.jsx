@@ -9,6 +9,9 @@ const FavoritesPage = ({favorites, updateFavorite, deleteFavorite}) => {
 
 
   const handleSave = () => {
+
+    if (editingId === null) return;
+    
     if (!editComment.trim()) {
       updateFavorite(editingId, { comment: "" });
       setEditingId(null);
@@ -25,7 +28,7 @@ const FavoritesPage = ({favorites, updateFavorite, deleteFavorite}) => {
     <div>
         <h2>Your Favorite Movies</h2>
         {favorites.map((favorite) =>
-        <div key={favorite.imdbID}>
+        <div key={favorite.id}>
             <Link to={`/movie/${favorite.imdbID}`}>
                 <h3>{favorite.Title}</h3>
                 <p>{favorite.Year}</p>
@@ -43,7 +46,11 @@ const FavoritesPage = ({favorites, updateFavorite, deleteFavorite}) => {
                 />
 
                 <button onClick={handleSave}>Save</button>
-                <button onClick={() => setEditingId(null)}>Cancel</button>
+                <button onClick={() =>
+                setEditComment(""),
+                // Gör att texten man skrivit i kommentaren inte finns kvar om man inte sparat, nu resetas allt när man trycker på Cancel till det tidigare.
+                setEditingId(null)}
+                >Cancel</button>
               </div>
           ) : (
             (favorite.comment ? (

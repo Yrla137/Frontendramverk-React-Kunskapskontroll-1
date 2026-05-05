@@ -9,6 +9,7 @@ const MovieDetailsPage = ({favorites, addToFavorites}) => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
 
   const isFavorite = favorites.some(
     (favorite) => favorite.imdbID === movie?.imdbID
