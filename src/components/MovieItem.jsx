@@ -1,25 +1,19 @@
 import { Link } from "react-router-dom"
-import { useState } from "react";
+import FavoriteBtn from "./FavoriteBtn";
 
 const MovieItem = ({ movie, favorites, addToFavorites }) => {
 
-  const [isFavoriteLoading, setIsFavoriteLoading] = useState(false);
-
-  const isFavorite = favorites.some(
-  (favorite) => favorite.imdbID === movie?.imdbID
-  );
-
   return (
-    <div>
+    <div className="movie-card-container">
 
-      <Link to={`/movie/${movie.imdbID}`} className="movie-card">
+      <Link to={`/movie/${movie.imdbID}`} className="movie-card-link">
 
-          <div className="movie-header">
+          <div className="movie-card-header">
               <h3>{movie.Title}</h3>
               <p>{movie.Year}</p>
           </div>
 
-          <div className="movie-image">
+          <div className="movie-card-image">
             {!movie.Poster || movie.Poster === "N/A" ? (
               <div className="no-poster-image">
                 <img src="src\assets\No_image_placeholder.jpg" alt="No image available" />
@@ -31,17 +25,11 @@ const MovieItem = ({ movie, favorites, addToFavorites }) => {
 
       </Link>
 
-      <button
-      disabled={isFavoriteLoading}
-      onClick={ async () => {
-        setIsFavoriteLoading(true)
-        try {
-        await addToFavorites(movie)}
-        finally{
-          setIsFavoriteLoading(false)
-        }}}>
-        {isFavoriteLoading ? "Updating..." : isFavorite ? "Remove from favorites❤️" : "Add to favorites❤️"}
-        </button>
+      <FavoriteBtn
+        movie={movie}
+        favorites={favorites}
+        addToFavorites={addToFavorites}
+      />
 
     
     </div>

@@ -7,6 +7,20 @@ const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const defaultSearchTermData = [
+        "Marvel",
+        "Lord of the Rings",
+        "Alien",
+        "Star Wars",
+        "Halloween"
+    ];
+
+    const randomDefaultTerm = () => {
+        const randomMovie = defaultSearchTermData[Math.floor(Math.random() * defaultSearchTermData.length)];
+        return randomMovie;
+
+    }
+
     
     const fetchMovies = async (term) => {
         try{
@@ -28,9 +42,12 @@ const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
 
 
     useEffect(() => {
-    if (!submittedSearchTerm) return;
-    fetchMovies(submittedSearchTerm);
+        const term = submittedSearchTerm ? submittedSearchTerm : randomDefaultTerm()
+
+
+    fetchMovies(term);
     }, [submittedSearchTerm]);
+    
 
 
     if (loading) {
@@ -46,16 +63,16 @@ const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
             </div>
         )
     }
-    
 
     return (
         <div className="movies-page">
+            {submittedSearchTerm ? <h3>Search results...</h3> : <h3>Recommended movies...</h3>}
             <MovieList className="movie-list"
             movies={movies}
             addToFavorites={addToFavorites}
             favorites={favorites}
-            searchTerm={submittedSearchTerm}
             />
+        {submittedSearchTerm ? <h3>Search results...</h3> : <h3>Recommended movies...</h3>}
         </div>
     )
 }

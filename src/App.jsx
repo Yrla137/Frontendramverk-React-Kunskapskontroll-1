@@ -24,6 +24,7 @@ const [submittedSearchTerm, setSubmittedSearchTerm] = useState("");
 // Det är denna som används för att hämta datan via en sökning(triggar API-anropet i MoviesPage).
 
 
+
   const navigate = useNavigate();
   // Detta ger dig en funktion som kan byta sida
 
@@ -99,12 +100,21 @@ const addToFavorites = async (movie) => {
     console.error("Error updating favorite:", error);
   }
 };
+
+
+const onResetMovies = () => {
+  setSubmittedSearchTerm("")
+  setSearchTerm("")
+}
  
 
   return (
     <div className='App'>
         
-        <Nav className="nav-bar"/>
+        <Nav
+        className="nav-bar"
+        onResetMovies={onResetMovies}
+        />
           <SearchBar
             className="search-bar"
             searchTerm={searchTerm}

@@ -2,6 +2,7 @@ import { getMovieById } from "../api/dataApi"
 import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import FavoriteBtn from "../components/FavoriteBtn"
 
 const MovieDetailsPage = ({favorites, addToFavorites}) => {
   const {id} = useParams()
@@ -9,11 +10,6 @@ const MovieDetailsPage = ({favorites, addToFavorites}) => {
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-
-  const isFavorite = favorites.some(
-    (favorite) => favorite.imdbID === movie?.imdbID
-  );
 
     const fetchMovie = async () => {
       
@@ -79,10 +75,11 @@ const MovieDetailsPage = ({favorites, addToFavorites}) => {
             <p>Language: {movie.Language}</p>
           </div>
 
-          <button className={`btn ${isFavorite ? "btn--remove" : "btn--add"}`}
-          onClick={() => {
-            addToFavorites(movie)}}>
-            {isFavorite ? "Remove from favorites❤️" : "Add to favorites❤️"}</button>
+          <FavoriteBtn
+            movie={movie}
+            favorites={favorites}
+            addToFavorites={addToFavorites}
+          />
 
     </div>
   )
