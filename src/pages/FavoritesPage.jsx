@@ -47,9 +47,9 @@ const FavoritesPage = ({favorites, updateFavorite, deleteFavorite}) => {
 
                 <button onClick={handleSave}>Save</button>
                 <button onClick={() =>
-                setEditComment(""),
+                {setEditComment("")
                 // Gör att texten man skrivit i kommentaren inte finns kvar om man inte sparat, nu resetas allt när man trycker på Cancel till det tidigare.
-                setEditingId(null)}
+                setEditingId(null)}}
                 >Cancel</button>
               </div>
           ) : (

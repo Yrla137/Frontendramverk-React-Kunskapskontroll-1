@@ -49,8 +49,8 @@ const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
     
 
     return (
-        <div>
-            <MovieList
+        <div className="movies-page">
+            <MovieList className="movie-list"
             movies={movies}
             addToFavorites={addToFavorites}
             favorites={favorites}

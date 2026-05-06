@@ -14,9 +14,14 @@ const App = () => {
 const [favorites, setFavorites] = useState([]);
 
 const [searchTerm, setSearchTerm] = useState("")
-// Vad som skrivs i sökfältet sparas i searchTerm, som är en state-variabel. setSearchTerm är funktionen som uppdaterar den.
+// Vad som skrivs i sökfältet sparas i searchTerm som är en state-variabel. setSearchTerm är funktionen som uppdaterar den.
+// Denna state är kopplad till SearchBar och används endast för UI (vad som visas i inputfältet).
+// Denna triggar inte API-anroppet direkt eftersom den ändras varje gång användaren skriver något.
 
 const [submittedSearchTerm, setSubmittedSearchTerm] = useState("");
+// Detta är det state som tillskillnad från searchTerm inte ändras vid varje tangenttryckning.
+// Den ändras endast när användaren aktivt gör en sökning (t.ex. trycker på Enter eller klickar på Search-knappen).
+// Det är denna som används för att hämta datan via en sökning(triggar API-anropet i MoviesPage).
 
 
   const navigate = useNavigate();
@@ -99,8 +104,9 @@ const addToFavorites = async (movie) => {
   return (
     <div className='App'>
         
-        <Nav/>
+        <Nav className="nav-bar"/>
           <SearchBar
+            className="search-bar"
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
             onSearch={onSearch}
@@ -129,3 +135,17 @@ const addToFavorites = async (movie) => {
 
 export default App
 
+
+
+
+// När du bara hade searchTerm fungerade det “ibland” eftersom samma state både styrde inputen och samtidigt användes som trigger för att hämta data.
+// Det skapade en otydlig koppling mellan vad användaren skrev och när sökningen faktiskt skulle köras.
+// På andra sidor såg det ut att fungera bättre eftersom sökningen oftast skedde i samband med navigation.
+// När du tryckte sök → bytte sida → komponenten mountades om → då kördes useEffect och fetchen igen.
+// Det gav en känsla av att allt fungerade, eftersom sidan “startade om” och då råkade trigga rätt beteende.
+// Problemet uppstod på /movies eftersom sidan redan var monterad. Då ändrades searchTerm, men det fanns ingen tydlig “signal” som sa att en ny sökning faktiskt skulle köras.
+// React såg bara att input ändrades, inte att en sökning skulle utföras.
+// Med submittedSearchTerm separerar du ansvaret:
+// searchTerm → vad användaren skriver (UI)
+// submittedSearchTerm → vad som faktiskt ska sökas (logik)
+// Det gör att MoviesPage får en stabil och tydlig trigger. När submittedSearchTerm ändras vet sidan exakt när den ska hämta data, oavsett om den redan är öppen eller inte.

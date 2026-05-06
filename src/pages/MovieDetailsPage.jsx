@@ -65,7 +65,7 @@ const MovieDetailsPage = ({favorites, addToFavorites}) => {
   return (
     <div>
 
-         <div className="movie-info">
+         <div className="movie-details-container">
           <h2>{movie.Title}</h2>
           <img src={movie.Poster} alt="N/A" />
             <p>Plot: {movie.Plot}</p>
@@ -79,7 +79,8 @@ const MovieDetailsPage = ({favorites, addToFavorites}) => {
             <p>Language: {movie.Language}</p>
           </div>
 
-          <button onClick={() => {
+          <button className={`btn ${isFavorite ? "btn--remove" : "btn--add"}`}
+          onClick={() => {
             addToFavorites(movie)}}>
             {isFavorite ? "Remove from favorites❤️" : "Add to favorites❤️"}</button>
 

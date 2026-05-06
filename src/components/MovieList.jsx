@@ -12,11 +12,12 @@ const MovieList = ({movies, favorites, addToFavorites, searchTerm}) => {
     }
 
   return (
-        <section>
+        <section className="movie-list-section">
             {movies.map(movie =>
-                <div>
+                <div className="movie-item-container" key={movie.imdbID}>
 
                     <MovieItem
+                    className="movie-item"
                     key={movie.imdbID}
                     movie={movie}
                     addToFavorites={addToFavorites}
