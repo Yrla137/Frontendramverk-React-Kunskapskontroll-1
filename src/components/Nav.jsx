@@ -1,4 +1,6 @@
 import {NavLink} from "react-router-dom";
+
+// Styling //
 import '../Nav.css'
 
 const Nav = ({onResetMovies}) => {
@@ -12,4 +14,5 @@ const Nav = ({onResetMovies}) => {
     </nav>
   )
 }
+
 export default Nav

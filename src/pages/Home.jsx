@@ -1,3 +1,4 @@
+// Styling //
 import '../Home.css'
 
 import { useNavigate } from "react-router-dom"
@@ -27,8 +28,8 @@ const Home = ({onResetMovies}) => {
         >
           Browse movies
         </button>
-      {/* Denna knapp använder navigate så som vi gör i Nav.jsx och använder funktionen onResetMovies som vi skickar ner från App.jsx.
-      Återställer söktermen till en tom sträng när användaren klickar på knappen, vilket gör att de alltid startar med en ny sökning när de går till MoviesPage. */}
+      {/* Denna knapp använder navigate så som i Nav.jsx och använder funktionen onResetMovies som skickas ner från App.jsx.
+      Återställer söktermen till en tom sträng när användaren klickar på knappen och slumpmässiga filmer kan komma upp i MoviesPage*/}
       </div>
 
     </div>

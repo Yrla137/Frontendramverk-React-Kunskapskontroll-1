@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import noPoster from "../assets/No_image_placeholder.jpg"
 import FavoriteBtn from "./FavoriteBtn";
+
+// Styling //
 import '../MovieItem.css'
 
 const MovieItem = ({ movie, favorites, addToFavorites }) => {

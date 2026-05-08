@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react"
 import { getAllMovies} from "../api/dataApi"
 import MovieList from "../components/MovieList"
+
+// Styling //
 import '../MoviesPage.css'
 
 const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
@@ -84,6 +86,5 @@ const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
         </div>
     )
 }
-
 
 export default MoviesPage
