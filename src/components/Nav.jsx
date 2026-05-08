@@ -1,16 +1,15 @@
 import {NavLink} from "react-router-dom";
+import '../Nav.css'
 
-const Nav = () => {
+const Nav = ({onResetMovies}) => {
   return (
-    <div className="main-nav">
-        <ul className="nav-ul">
-          <li><NavLink to='/' className="nav-link">Home</NavLink></li>
-          <li><NavLink to='/movies' className="nav-link">Movies</NavLink></li>
-          {/* Lägg till så att random filmer visas när man kommer till denna sida */}
-          <li><NavLink to='/favorites' className="nav-link">Favorites</NavLink></li>
-          {/* Lägg til så denna länk kommer till Favorit-sidan */}
+    <nav className='main-nav'>
+        <ul className="nav-list">
+          <li className='nav-item'><NavLink to='/' className="nav-link">Home</NavLink></li>
+          <li className='nav-item'><NavLink to='/movies' className="nav-link" onClick={onResetMovies}>Movies</NavLink></li>
+          <li className='nav-item'><NavLink to='/favorites' className="nav-link">Favorites</NavLink></li>
         </ul>
-    </div>
+    </nav>
   )
 }
 export default Nav

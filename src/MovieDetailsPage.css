@@ -1,0 +1,144 @@
+/* Details page */
+
+.movie-details-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+  padding-bottom: 2rem;
+  animation: fadeSlideUp 0.75s ease;
+}
+
+/* Main container */
+
+.movie-details-container {
+  width: min(100%, 980px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.25rem;
+}
+
+/* Title */
+
+.movie-details-title {
+  text-align: center;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  line-height: 1.1;
+  animation: glowPulse 4.5s ease-in-out infinite;
+}
+
+/* Poster */
+
+.movie-details-poster {
+  width: min(100%, 420px);
+  border-radius: 18px;
+  box-shadow:
+    0 16px 30px rgba(0, 0, 0, 0.7),
+    0 0 18px rgba(178, 102, 255, 0.14);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.movie-details-poster:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.75),
+    0 0 22px rgba(77, 163, 255, 0.18);
+}
+
+/* Info card */
+
+.movie-details-info {
+  width: 100%;
+  padding: 1.5rem 1.25rem;
+  border-radius: 30px;
+  background: rgba(10, 10, 10, 0.52);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    var(--shadow-dark),
+    0 0 18px rgba(106, 13, 173, 0.12);
+}
+
+/* Detail row */
+
+.movie-detail-row {
+  margin-bottom: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+.movie-detail-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Favorite button area */
+
+.movie-details-favorite-btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Loading */
+
+.loading-movie-details,
+.error-movie-details,
+.movie-not-found {
+  min-height: 55vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+  animation: fadeSlideUp 0.7s ease;
+}
+
+/* Error and not found titles */
+
+.error-movie-details-title,
+.movie-not-found-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+/* Back links */
+
+.error-movie-details-link,
+.movie-not-found-link {
+  color: var(--text-main);
+  text-shadow:
+    0 0 8px rgba(178, 102, 255, 0.35);
+}
+
+.error-movie-details-link:hover,
+.movie-not-found-link:hover {
+  text-shadow:
+    0 0 12px rgba(178, 102, 255, 0.6),
+    0 0 18px rgba(255, 23, 68, 0.28);
+}
+
+/* Retry button */
+
+.error-movie-details-retry-btn {
+  padding: 0.9rem 1.8rem;
+  border-radius: var(--radius-medium);
+  background: linear-gradient(135deg, var(--red-primary), #9e0022);
+  box-shadow:
+    var(--glow-red),
+    var(--shadow-dark);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.error-movie-details-retry-btn:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 0 18px rgba(255, 23, 68, 0.65),
+    0 0 26px rgba(122, 0, 24, 0.45);
+}

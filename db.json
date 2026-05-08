@@ -1,13 +1,55 @@
 {
   "favorites": [
     {
-      "Title": "Batman Begins",
-      "Year": "2005",
-      "imdbID": "tt0372784",
+      "Title": "Alien",
+      "Year": "1979",
+      "Rated": "R",
+      "Released": "22 Jun 1979",
+      "Runtime": "117 min",
+      "Genre": "Horror, Sci-Fi",
+      "Director": "Ridley Scott",
+      "Writer": "Dan O'Bannon, Ronald Shusett",
+      "Actors": "Sigourney Weaver, Tom Skerritt, John Hurt",
+      "Plot": "After investigating a mysterious transmission of unknown origin, the crew of a commercial spacecraft encounters a deadly lifeform.",
+      "Language": "English",
+      "Country": "United Kingdom, United States",
+      "Awards": "Won 1 Oscar. 19 wins & 22 nominations total",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BN2NhMDk2MmEtZDQzOC00MmY5LThhYzAtMDdjZGFjOGZjMjdjXkEyXkFqcGc@._V1_QL75_UX380_CR0,6,380,562_.jpg",
+      "Ratings": [
+        {
+          "Source": "Internet Movie Database",
+          "Value": "8.5/10"
+        },
+        {
+          "Source": "Rotten Tomatoes",
+          "Value": "93%"
+        },
+        {
+          "Source": "Metacritic",
+          "Value": "89/100"
+        }
+      ],
+      "Metascore": "89",
+      "imdbRating": "8.5",
+      "imdbVotes": "1,061,640",
+      "imdbID": "tt0078748",
       "Type": "movie",
-      "Poster": "https://m.media-amazon.com/images/M/MV5BMzA2NDQzZDEtNDU5Ni00YTlkLTg2OWEtYmQwM2Y1YTBjMjFjXkEyXkFqcGc@._V1_QL75_UX380_CR0,0,380,562_.jpg",
+      "DVD": "N/A",
+      "BoxOffice": "$84,206,106",
+      "Production": "N/A",
+      "Website": "N/A",
+      "Response": "True",
       "comment": "",
-      "id": "XuPPSv9Bvso"
+      "id": "6F2ahtt32q4"
+    },
+    {
+      "Title": "Halloween",
+      "Year": "1978",
+      "imdbID": "tt0077651",
+      "Type": "movie",
+      "Poster": "https://m.media-amazon.com/images/M/MV5BMzZiNTdiYTgtYjNkMS00MmJmLWEwZGQtNmY0NGJkMGE0YmYzXkEyXkFqcGc@._V1_QL75_UX380_CR0,9,380,562_.jpg",
+      "comment": "",
+      "id": "6eDzoFNYmmk"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

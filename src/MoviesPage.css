@@ -1,0 +1,82 @@
+/* Movies page */
+
+.movies-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+/* Page heading */
+
+.movies-page > h3 {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  text-align: center;
+  color: var(--text-main);
+  text-shadow:
+    0 0 10px rgba(178, 102, 255, 0.45),
+    0 0 18px rgba(255, 23, 68, 0.2);
+}
+
+/* Movies results barrier */
+
+.movies-page-container {
+  width: 100%;
+  padding: 1.25rem;
+  border-radius: var(--radius-large);
+  background: rgba(10, 10, 10, 0.45);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    var(--shadow-dark),
+    0 0 18px rgba(106, 13, 173, 0.12);
+}
+
+/* Loading state */
+
+.loading-movies-state,
+.error-movies-state {
+  min-height: 55vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+  animation: fadeSlideUp 0.7s ease;
+}
+
+/* Error title */
+
+.error-movies-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+/* Error text */
+
+.error-movies-message {
+  max-width: 700px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Retry button */
+
+.error-movies-retry-btn {
+  padding: 0.9rem 1.8rem;
+  border-radius: var(--radius-medium);
+  background: linear-gradient(135deg, var(--red-primary), #a0002a);
+  box-shadow:
+    var(--glow-red),
+    var(--shadow-dark);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.error-movies-retry-btn:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow:
+    0 0 18px rgba(255, 23, 68, 0.65),
+    0 0 26px rgba(122, 0, 24, 0.45);
+}

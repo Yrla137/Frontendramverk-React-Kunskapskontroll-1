@@ -2,6 +2,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { getFavorites } from "./api/dataApi";
 import { addFavoriteApi, deleteFavoriteApi, updateFavoriteApi } from "./api/dataApi";
+import './App.css'
+
 import Home from './pages/Home'
 import MoviesPage from './pages/MoviesPage'
 import Nav from './components/Nav'
@@ -14,9 +16,15 @@ const App = () => {
 const [favorites, setFavorites] = useState([]);
 
 const [searchTerm, setSearchTerm] = useState("")
-// Vad som skrivs i sökfältet sparas i searchTerm, som är en state-variabel. setSearchTerm är funktionen som uppdaterar den.
+// Vad som skrivs i sökfältet sparas i searchTerm som är en state-variabel. setSearchTerm är funktionen som uppdaterar den.
+// Denna state är kopplad till SearchBar och används endast för UI (vad som visas i inputfältet).
+// Denna triggar inte API-anroppet direkt eftersom den ändras varje gång användaren skriver något.
 
 const [submittedSearchTerm, setSubmittedSearchTerm] = useState("");
+// Detta är det state som tillskillnad från searchTerm inte ändras vid varje tangenttryckning.
+// Den ändras endast när användaren aktivt gör en sökning (t.ex. trycker på Enter eller klickar på Search-knappen).
+// Det är denna som används för att hämta datan via en sökning(triggar API-anropet i MoviesPage).
+
 
 
   const navigate = useNavigate();
@@ -94,19 +102,32 @@ const addToFavorites = async (movie) => {
     console.error("Error updating favorite:", error);
   }
 };
+
+
+const onResetMovies = () => {
+  setSubmittedSearchTerm("")
+  setSearchTerm("")
+}
  
 
   return (
-    <div className='App'>
+    <div className='app'>
         
-        <Nav/>
-          <SearchBar
+        <Nav
+        onResetMovies={onResetMovies}
+        />
+        <header className='app-header'>
+           <SearchBar
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
             onSearch={onSearch}
           />
-        <Routes>
-          <Route path='/' element={< Home />}/>
+        </header>
+
+        <main className='app-main'>
+          <Routes>
+          <Route path='/' element={< Home
+          onResetMovies={onResetMovies}/>}/>
           <Route path='/movies' element={< MoviesPage
             addToFavorites={addToFavorites}
             favorites={favorites}
@@ -122,6 +143,7 @@ const addToFavorites = async (movie) => {
           deleteFavorite={deleteFavorite}
           updateFavorite={updateFavorite}/>}/>
         </Routes>
+        </main>
 
     </div>
   )
@@ -129,3 +151,17 @@ const addToFavorites = async (movie) => {
 
 export default App
 
+
+
+
+// När du bara hade searchTerm fungerade det “ibland” eftersom samma state både styrde inputen och samtidigt användes som trigger för att hämta data.
+// Det skapade en otydlig koppling mellan vad användaren skrev och när sökningen faktiskt skulle köras.
+// På andra sidor såg det ut att fungera bättre eftersom sökningen oftast skedde i samband med navigation.
+// När du tryckte sök → bytte sida → komponenten mountades om → då kördes useEffect och fetchen igen.
+// Det gav en känsla av att allt fungerade, eftersom sidan “startade om” och då råkade trigga rätt beteende.
+// Problemet uppstod på /movies eftersom sidan redan var monterad. Då ändrades searchTerm, men det fanns ingen tydlig “signal” som sa att en ny sökning faktiskt skulle köras.
+// React såg bara att input ändrades, inte att en sökning skulle utföras.
+// Med submittedSearchTerm separerar du ansvaret:
+// searchTerm → vad användaren skriver (UI)
+// submittedSearchTerm → vad som faktiskt ska sökas (logik)
+// Det gör att MoviesPage får en stabil och tydlig trigger. När submittedSearchTerm ändras vet sidan exakt när den ska hämta data, oavsett om den redan är öppen eller inte.

@@ -1,20 +1,95 @@
-# React + Vite
+# Movie Finder App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Projektbeskrivning
 
-Currently, two official plugins are available:
+Detta projekt är en CRUD-baserad React-applikation byggd med React, Vite, Axios och React Router DOM.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Applikationen använder OMDb API för att söka efter filmer och visa information om dem. Användaren kan söka efter filmer, se detaljerad information om varje film och hantera en personlig favoritlista.
 
-## React Compiler
+Eftersom OMDb API är read-only har CRUD-funktionaliteten implementerats lokalt med hjälp av JSON Server. Användaren kan:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Lägga till filmer i favoriter
+- Ta bort filmer från favoriter
+- Skriva kommentarer på favoritfilmer
+- Redigera kommentarer
+- Ta bort kommentarer
 
-## Expanding the ESLint configuration
+Projektet är skapat som en del av Kunskapskontroll 1.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Teknologier som använts
+
+- React
+- Vite
+- Axios
+- React Router DOM
+- JSON Server
+- OMDb API
+
+---
+
+## API som används
+
+Projektet använder OMDb API:
+
+https://www.omdbapi.com/
+
+---
+
+## Funktioner
+
+### API-integration
+- Axios-konfiguration i separat api-mapp
+- Återanvändbara API-funktioner
+- Felhantering med try/catch
+
+### CRUD-funktionalitet
+- Create – lägga till favoritfilmer
+- Read – söka och visa filmer
+- Update – redigera kommentarer på favoritfilmer
+- Delete – ta bort favoriter och kommentarer
+
+### Routing
+- Startsida
+- Movies-sida
+- Detaljsida för filmer
+- Favorites-sida
+
+### React-funktionalitet
+- useState
+- useEffect
+- Controlled forms
+- Conditional rendering
+- Props och återanvändbara komponenter
+
+### Extra funktioner
+- Loading states
+- Error handling
+- Dynamiska routes med useParams
+- Placeholder-bild när film saknar poster
+
+---
+
+## Projektstruktur
+
+```txt
+src/
+├── api/
+│   ├── axiosConfig.js
+│   └── dataApi.js
+├── assets/
+├── components/
+├── pages/
+├── App.jsx
+└── main.jsx
 
 
-Starta JSON:
+
+Kunskapskontroll 1.
+Julia Björling FSU25D.
+
+Start av egen JSON-server:
 npx json-server db.json --port 3001
+I terminalen i objektets main mapp.
+Måste startas för att tillfälligt spara data.

@@ -1,10 +1,13 @@
+import '../SearchBar.css'
+
 const SearchBar = ({searchTerm, setSearchTerm, onSearch}) => {
 
   return (
-    <div>
-          <div className='search-container'>
+    <div className='search-bar'>
+          <div className='search-bar-container'>
 
-            <form onSubmit={(e) => {
+            <form className='search-form'
+            onSubmit={(e) => {
 
               e.preventDefault();
               if(!searchTerm.trim()) return;
@@ -16,7 +19,7 @@ const SearchBar = ({searchTerm, setSearchTerm, onSearch}) => {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     placeholder="Search..."
                 />
-                <button type="submit">Search</button>
+                <button className="search-bar-btn" type="submit">Search</button>
 
             </form>
             </div>
