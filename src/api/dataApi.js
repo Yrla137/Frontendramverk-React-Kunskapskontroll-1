@@ -35,9 +35,7 @@ export const getMovieById = async (id) => {
 };
 
 
-
-
-// FAVORITES (JSON SERVER) //
+// FAVORITES (EGEN JSON SERVER) //
 
 const FAVORITES_URL = "http://localhost:3001/favorites";
 

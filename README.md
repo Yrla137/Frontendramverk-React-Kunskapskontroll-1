@@ -1,16 +1,26 @@
 # Movie Finder App
 
+Kunskapskontroll 1.
+Julia Björling
+FSU25D
+
+Start av egen JSON-server:
+npx json-server db.json --port 3001
+
+Måste startas för att tillfälligt spara data.
+
+
 ## Projektbeskrivning
 
 Detta projekt är en CRUD-baserad React-applikation byggd med React, Vite, Axios och React Router DOM.
 
 Applikationen använder OMDb API för att söka efter filmer och visa information om dem. Användaren kan söka efter filmer, se detaljerad information om varje film och hantera en personlig favoritlista.
 
-Eftersom OMDb API är read-only har CRUD-funktionaliteten implementerats lokalt med hjälp av JSON Server. Användaren kan:
+Eftersom OMDb API är read-only har CRUD-funktionaliteten implementerats lokalt med hjälp av JSON Server. Användaren kan nu:
 
 - Lägga till filmer i favoriter
 - Ta bort filmer från favoriter
-- Skriva kommentarer på favoritfilmer
+- Skriva kommentarer på favoritfilmerna i listan
 - Redigera kommentarer
 - Ta bort kommentarer
 
@@ -83,13 +93,3 @@ src/
 ├── pages/
 ├── App.jsx
 └── main.jsx
-
-
-
-Kunskapskontroll 1.
-Julia Björling FSU25D.
-
-Start av egen JSON-server:
-npx json-server db.json --port 3001
-I terminalen i objektets main mapp.
-Måste startas för att tillfälligt spara data.

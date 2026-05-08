@@ -1,12 +1,10 @@
 import MovieItem from "../components/MovieItem"
+
+// Styling //
 import '../MovieList.css'
 
 
 const MovieList = ({movies, favorites, addToFavorites}) => {
-
-    // if (!searchTerm || searchTerm.trim() === "") {
-    //     return <div><p>Search for a movie...</p></div>;
-    // }
 
     if(!movies || movies.length === 0) {
         return <div><p>No movies found</p></div>;

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+
+// Styling //
 import "../FavoritesPage.css"
 
 const FavoritesPage = ({favorites, updateFavorite, deleteFavorite}) => {

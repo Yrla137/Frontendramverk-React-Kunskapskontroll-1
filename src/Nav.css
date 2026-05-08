@@ -1,142 +1,78 @@
-/* Navigation wrapper */
-
+/* NAV WRAPPER */
 .main-nav {
   width: 100%;
-
-  position: sticky;
-  top: 0;
-  z-index: 200;
-
-  padding:
-    1rem
-    2rem;
-
-  background:
-    rgba(5, 5, 5, 0.75);
-
-  backdrop-filter: blur(12px);
-
-  border-bottom:
-    1px solid rgba(255, 255, 255, 0.05);
-}
-
-
-/* Navigation list */
-
-.nav-list {
-  list-style: none;
-
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-
-  flex-wrap: wrap;
+  padding: 1.2rem 1rem;
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(120, 80, 255, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
+/* NAV LIST */
+.nav-list {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  align-items: center;
+}
 
-/* Navigation items */
-
+/* NAV ITEM */
 .nav-item {
   position: relative;
+  display: flex;
+  justify-content: center;
 }
 
-
-/* Navigation links */
-
+/* NAV LINK */
 .nav-link {
   position: relative;
-
-  font-size: 1rem;
+  text-decoration: none;
+  color: #f2f2f2;
   font-weight: 600;
-
-  color: var(--text-main);
-
-  padding:
-    0.6rem
-    1rem;
-
-  border-radius: var(--radius-small);
-
-  transition:
-    color 0.3s ease,
-    transform 0.3s ease,
-    text-shadow 0.3s ease;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  padding: 0.4rem 0.2rem;
+  transition: all 0.25s ease;
+  display: inline-block;
 }
 
-
-/* Link hover */
-
+/* HOVER EFFECT */
 .nav-link:hover {
-  color: #ffffff;
-
-  transform: translateY(-2px);
-
-  text-shadow:
-    0 0 10px rgba(178, 102, 255, 0.8),
-    0 0 18px rgba(255, 23, 68, 0.5);
+  color: #d6c2ff;
+  text-shadow: 0 0 8px rgba(160, 90, 255, 0.6),
+               0 0 14px rgba(80, 120, 255, 0.4);
 }
 
-
-/* Animated underline */
-
+/* UNDERLINE BASE */
 .nav-link::after {
   content: "";
-
   position: absolute;
-
-  left: 50%;
-  bottom: -4px;
-
-  width: 0%;
+  left: 0;
+  bottom: -6px;
   height: 2px;
-
-  transform: translateX(-50%);
-
-  background:
-    linear-gradient(
-      to right,
-      var(--purple-glow),
-      var(--red-glow)
-    );
-
-  transition: width 0.3s ease;
+  width: 100%;
+  background: linear-gradient(90deg, #7a4dff, #3b82f6);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  border-radius: 4px;
 }
 
-
-.nav-link:hover::after {
-  width: 80%;
+/* UNDERLINE HOVER + ACTIVE */
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
 }
 
-
-/* Active route */
-
+/* ACTIVE LINK */
 .nav-link.active {
   color: #ffffff;
-
-  text-shadow:
-    0 0 12px rgba(178, 102, 255, 0.8),
-    0 0 20px rgba(255, 23, 68, 0.5);
-}
-
-
-/* Mobile navigation */
-
-@media (max-width: 768px) {
-
-  .main-nav {
-    padding:
-      1rem;
-  }
-
-  .nav-list {
-    gap: 1rem;
-  }
-
-  .nav-link {
-    font-size: 0.95rem;
-    padding:
-      0.5rem
-      0.8rem;
-  }
+  text-shadow: 0 0 10px rgba(160, 90, 255, 0.8);
 }

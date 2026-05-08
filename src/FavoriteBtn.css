@@ -1,4 +1,5 @@
-/* Favorite button wrapper */
+
+/* FAVORITE BUTTON BASE */
 
 .favorite-btn-container {
   width: 100%;
@@ -13,97 +14,116 @@
 .btn {
   width: 100%;
   max-width: 240px;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
+  gap: 0.5rem;
 
   padding: 0.75rem 1rem;
 
-  border: none;
   border-radius: 14px;
+  border: none;
 
-  color: var(--text-main);
+  color: #f5f5f5;
   font-weight: 700;
-  font-size: 0.88rem;
-  white-space: nowrap;
+  font-size: 0.9rem;
 
   cursor: pointer;
 
-  background: transparent;
-  box-shadow: var(--shadow-dark);
-
   backdrop-filter: blur(10px);
 
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
+
   transition:
-    transform 0.28s ease,
-    box-shadow 0.28s ease,
-    filter 0.28s ease,
-    background 0.28s ease,
-    opacity 0.28s ease;
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
 }
 
 
-/* Hover effect */
-
-.btn:hover {
-  transform: translateY(-4px) scale(1.04);
-  filter: brightness(1.08);
-}
-
-
-/* Add button */
+/* ADD / REMOVE STATES */
 
 .btn--add {
-  background: linear-gradient(135deg, var(--blue-primary), var(--purple-primary));
+  background: linear-gradient(135deg, #4da3ff, #7a4dff);
   box-shadow:
     0 0 14px rgba(77, 163, 255, 0.35),
-    0 0 22px rgba(106, 13, 173, 0.22),
-    var(--shadow-dark);
+    0 0 24px rgba(122, 77, 255, 0.25);
 }
-
-
-/* Remove button */
 
 .btn--remove {
-  background: linear-gradient(135deg, var(--red-primary), #aa0030);
+  background: linear-gradient(135deg, #2b4f7a, #4b2a7a);
   box-shadow:
-    0 0 14px rgba(255, 23, 68, 0.35),
-    0 0 22px rgba(122, 0, 24, 0.22),
-    var(--shadow-dark);
+    0 0 14px rgba(30, 90, 160, 0.25),
+    0 0 22px rgba(70, 30, 120, 0.22);
 }
 
 
-/* Loading state */
+/* HOVER EFFECT */
+
+.btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  filter: brightness(1.1);
+}
+
+
+/* LOADING STATE */
 
 .btn--loading {
-  opacity: 0.9;
+  opacity: 0.8;
   cursor: wait;
-  transform: scale(0.99);
+  transform: scale(0.98);
 }
 
 
-/* Disabled state */
+/* ICON */
 
-.btn:disabled {
-  cursor: not-allowed;
-  opacity: 0.75;
-  transform: none;
+.favorite-btn-icon {
+  font-size: 1rem;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* active heart glow */
+.favorite-btn-icon--active {
+  color: #ff4d6d;
+  filter: drop-shadow(0 0 10px rgba(255, 77, 109, 0.7));
 }
 
 
-/* Hover glow */
+/* CLICK ANIMATION */
 
-.btn--add:hover {
-  box-shadow:
-    0 0 18px rgba(77, 163, 255, 0.55),
-    0 0 30px rgba(106, 13, 173, 0.32),
-    var(--shadow-dark);
+.btn--animate {
+  animation: btnPop 0.35s ease;
 }
 
-.btn--remove:hover {
-  box-shadow:
-    0 0 18px rgba(255, 23, 68, 0.55),
-    0 0 30px rgba(122, 0, 24, 0.32),
-    var(--shadow-dark);
+@keyframes btnPop {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.1);
+    box-shadow:
+      0 0 25px rgba(77, 163, 255, 0.5),
+      0 0 35px rgba(122, 77, 255, 0.4);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+/* HEARTBEAT (FAVORITE ACTIVE) */
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.15); }
+  50% { transform: scale(1); }
+  75% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.btn--remove .favorite-btn-icon--active {
+  animation: heartbeat 1.4s infinite;
 }
