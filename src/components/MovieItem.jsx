@@ -3,7 +3,7 @@ import noPoster from "../assets/No_image_placeholder.jpg"
 import FavoriteBtn from "./FavoriteBtn";
 
 // Styling //
-import '../MovieItem.css'
+import "../CSS/MovieItem.css";
 
 const MovieItem = ({ movie, favorites, addToFavorites }) => {
 

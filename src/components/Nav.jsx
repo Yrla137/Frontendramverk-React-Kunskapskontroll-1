@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom";
 
 // Styling //
-import '../Nav.css'
+import "../CSS/Nav.css"
 
 const Nav = ({onResetMovies}) => {
   return (

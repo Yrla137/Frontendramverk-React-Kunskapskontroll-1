@@ -103,6 +103,18 @@
     0 0 6px rgba(120, 100, 255, 0.15);
 }
 
+/* Detail labels */
+
+.movie-detail-label {
+  font-weight: 800;
+
+  color: #ffffff;
+
+  text-shadow:
+    0 0 8px rgba(178, 102, 255, 0.3),
+    0 0 12px rgba(77, 163, 255, 0.16);
+}
+
 /* Favorite button section */
 .movie-details-favorite-btn {
   margin-top: 20px;

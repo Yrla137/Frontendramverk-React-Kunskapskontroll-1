@@ -1,5 +1,5 @@
 // Styling //
-import '../SearchBar.css'
+import "../CSS/SearchBar.css"
 
 const SearchBar = ({searchTerm, setSearchTerm, onSearch}) => {
 

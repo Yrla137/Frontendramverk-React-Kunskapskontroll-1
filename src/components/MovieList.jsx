@@ -1,7 +1,7 @@
 import MovieItem from "../components/MovieItem"
 
 // Styling //
-import '../MovieList.css'
+import "../CSS/MovieList.css"
 
 
 const MovieList = ({movies, favorites, addToFavorites}) => {

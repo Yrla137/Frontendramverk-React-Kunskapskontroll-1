@@ -22,7 +22,7 @@
 
   padding: 0.75rem 1rem;
 
-  border-radius: 14px;
+  border-radius: 20px;
   border: none;
 
   color: #f5f5f5;
@@ -52,7 +52,11 @@
 }
 
 .btn--remove {
-  background: linear-gradient(135deg, #2b4f7a, #4b2a7a);
+    background: linear-gradient(
+    135deg,
+    var(--blue-primary),
+    var(--purple-primary)
+  );
   box-shadow:
     0 0 14px rgba(30, 90, 160, 0.25),
     0 0 22px rgba(70, 30, 120, 0.22);

@@ -2,7 +2,7 @@ import { useState } from "react";
 
 // Styling //
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import "../FavoriteBtn.css"
+import "../CSS/FavoriteBtn.css";
 
 const FavoriteBtn = ({movie, favorites, addToFavorites}) => {
 

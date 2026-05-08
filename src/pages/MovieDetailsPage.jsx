@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import FavoriteBtn from "../components/FavoriteBtn"
 
 // Styling //
-import '../MovieDetailsPage.css'
+import "../CSS/MovieDetailsPage.css"
 
 const MovieDetailsPage = ({favorites, addToFavorites}) => {
   const {id} = useParams()
@@ -70,15 +70,33 @@ const MovieDetailsPage = ({favorites, addToFavorites}) => {
           <img className='movie-details-poster' 
           src={movie.Poster} alt={`${movie.Title} poster`} />
           <div className='movie-details-info'>
-            <p className='movie-detail-row'>Plot: {movie.Plot}</p>
-            <p className='movie-detail-row'>Staring: {movie.Actors}</p>
-            <p className='movie-detail-row'>Genre: {movie.Genre}</p>
-            <p className='movie-detail-row'>Runtime: {movie.Runtime}</p>
-            <p className='movie-detail-row'>Release: {movie.Released}</p>
-            <p className='movie-detail-row'>Rating: {movie.Rated}</p>
-            <p className='movie-detail-row'>Awards: {movie.Awards}</p>
-            <p className='movie-detail-row'>Country: {movie.Country}</p>
-            <p className='movie-detail-row'>Language: {movie.Language}</p>
+            <p className='movie-detail-row'>
+              <span className='movie-detail-label'>Plot:</span> {movie.Plot}
+            </p>
+            <p className='movie-detail-row'>
+              <span className='movie-detail-label'>Starring:</span> {movie.Actors}
+            </p>
+            <p className='movie-detail-row'>
+              <span className='movie-detail-label'>Genre:</span> {movie.Genre}
+            </p>
+            <p className='movie-detail-row'>
+              <span className='movie-detail-label'>Runtime:</span> {movie.Runtime}
+            </p>
+            <p className='movie-detail-row'>
+              <span className='movie-detail-label'>Release:</span> {movie.Released}
+            </p>
+            <p className='movie-detail-row'>
+              <span className='movie-detail-label'>Rating:</span> {movie.Rated}
+            </p>
+            <p className='movie-detail-row'>
+              <span className='movie-detail-label'>Awards:</span> {movie.Awards}
+            </p>
+            <p className='movie-detail-row'>
+              <span className='movie-detail-label'>Country:</span> {movie.Country}
+            </p>
+            <p className='movie-detail-row'>
+              <span className='movie-detail-label'>Language:</span> {movie.Language}
+            </p>
           </div>
         </div>
 

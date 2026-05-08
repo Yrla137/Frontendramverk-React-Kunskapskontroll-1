@@ -6,6 +6,7 @@
   flex-direction: column;
   gap: 1.5rem;
   padding-bottom: 2rem;
+
   animation: fadeSlideUp 0.75s ease;
 }
 
@@ -14,28 +15,10 @@
 
 .favorites-page-title {
   text-align: center;
+
   font-size: clamp(2rem, 4vw, 3.4rem);
+
   animation: glowPulse 4.5s ease-in-out infinite;
-}
-
-
-/* Subtitle */
-
-.favorites-page-subtitle {
-  grid-column: 1 / -1;
-  width: 100%;
-  text-align: center;
-
-  font-size: clamp(1rem, 2vw, 1.35rem);
-  color: var(--text-secondary);
-  line-height: 1.7;
-
-  text-shadow:
-    0 0 8px rgba(255, 255, 255, 0.08);
-
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 2;
 }
 
 
@@ -43,7 +26,13 @@
 
 .favorites-page-list {
   width: 100%;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+
   padding: 1.5rem;
+
   border-radius: var(--radius-large);
 
   background: rgba(10, 10, 10, 0.46);
@@ -54,11 +43,27 @@
   box-shadow:
     var(--shadow-dark),
     0 0 20px rgba(106, 13, 173, 0.12);
+}
 
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.5rem;
-  align-items: start;
+
+/* Subtitle */
+
+.favorites-page-subtitle {
+  grid-column: 1 / -1;
+
+  width: 100%;
+
+  text-align: center;
+
+  font-size: clamp(1rem, 2vw, 1.35rem);
+  line-height: 1.7;
+
+  color: var(--text-secondary);
+
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.08);
+
+  margin-bottom: 0.25rem;
 }
 
 
@@ -70,6 +75,7 @@
   gap: 1rem;
 
   padding: 1rem;
+
   border-radius: 30px;
 
   background: rgba(14, 14, 14, 0.62);
@@ -89,9 +95,11 @@
 
 .favorite-card:hover {
   transform: translateY(-6px) scale(1.01);
+
   box-shadow:
     0 16px 35px rgba(0, 0, 0, 0.72),
     0 0 20px rgba(178, 102, 255, 0.14);
+
   border-color: rgba(178, 102, 255, 0.18);
 }
 
@@ -103,6 +111,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.65rem;
+
   text-align: center;
 }
 
@@ -122,8 +131,9 @@
 /* Year */
 
 .favorite-movie-year {
-  color: var(--text-secondary);
   font-size: 0.95rem;
+
+  color: var(--text-secondary);
 }
 
 
@@ -132,6 +142,7 @@
 .favorite-movie-poster {
   width: 100%;
   max-width: 320px;
+
   aspect-ratio: 2 / 3;
   object-fit: cover;
 
@@ -148,6 +159,7 @@
 
 .favorite-movie-link:hover .favorite-movie-poster {
   transform: translateY(-4px) scale(1.02);
+
   box-shadow:
     0 14px 30px rgba(0, 0, 0, 0.72),
     0 0 18px rgba(178, 102, 255, 0.18);
@@ -163,9 +175,11 @@
   gap: 0.85rem;
 
   padding: 1rem;
+
   border-radius: 24px;
 
   background: rgba(8, 8, 8, 0.42);
+
   border: 1px solid rgba(255, 255, 255, 0.08);
 
   box-shadow:
@@ -176,8 +190,9 @@
 /* Comment text */
 
 .favorite-comment-text {
-  color: var(--text-secondary);
   line-height: 1.75;
+
+  color: var(--text-secondary);
 }
 
 
@@ -186,6 +201,7 @@
 .favorite-comment-textarea {
   width: 100%;
   min-height: 100px;
+
   resize: vertical;
 
   padding: 0.85rem 0.95rem;
@@ -226,31 +242,34 @@
 
 .favorite-actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
+
+  gap: 0.6rem;
+
+  width: 100%;
 }
 
 
-/* Small button base for comment actions */
+/* Comment buttons */
 
 .favorite-comment-save-btn,
 .favorite-comment-cancel-btn,
 .favorite-comment-edit-btn,
-.favorite-comment-delete-btn,
-.favorite-comment-add-btn,
-.favorite-delete-btn {
-  padding: 0.68rem 0.9rem;
-  border-radius: 14px;
+.favorite-comment-add-btn {
+  min-width: 105px;
 
-  color: var(--text-main);
-  font-weight: 700;
-  font-size: 0.82rem;
+  padding: 0.62rem 0.8rem;
+
+  border-radius: 20px;
 
   border: 1px solid rgba(255, 255, 255, 0.08);
 
-  min-width: 120px;
+  color: var(--text-main);
+
+  font-size: 0.78rem;
+  font-weight: 700;
 
   transition:
     transform 0.25s ease,
@@ -262,7 +281,12 @@
 /* Save */
 
 .favorite-comment-save-btn {
-  background: linear-gradient(135deg, #1a9d58, var(--green-save));
+  background: linear-gradient(
+    135deg,
+    #1a9d58,
+    var(--green-save)
+  );
+
   box-shadow:
     0 0 14px rgba(31, 170, 89, 0.35),
     var(--shadow-dark);
@@ -272,9 +296,14 @@
 /* Cancel */
 
 .favorite-comment-cancel-btn {
-  background: linear-gradient(135deg, var(--purple-primary), #4b1d7d);
+  background: linear-gradient(
+    135deg,
+    #8b1028,
+    #540011
+  );
+
   box-shadow:
-    0 0 14px rgba(178, 102, 255, 0.3),
+    0 0 14px rgba(255, 23, 68, 0.3),
     var(--shadow-dark);
 }
 
@@ -283,21 +312,49 @@
 
 .favorite-comment-edit-btn,
 .favorite-comment-add-btn {
-  background: linear-gradient(135deg, var(--blue-primary), var(--purple-primary));
+  background: linear-gradient(
+    135deg,
+    var(--blue-primary),
+    var(--purple-primary)
+  );
+
   box-shadow:
     0 0 14px rgba(77, 163, 255, 0.28),
     var(--shadow-dark);
 }
 
 
-/* Delete comment + delete favorite */
+/* Delete comment */
 
-.favorite-comment-delete-btn,
-.favorite-delete-btn {
-  background: linear-gradient(135deg, var(--red-primary), #a40022);
+.favorite-comment-delete-btn {
+  width: 46px;
+  height: 46px;
+
+  padding: 0;
+
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: linear-gradient(
+    135deg,
+    var(--red-primary),
+    #a40022
+  );
+
   box-shadow:
     0 0 14px rgba(255, 23, 68, 0.32),
     var(--shadow-dark);
+
+  transition:
+    transform 0.25s ease,
+    filter 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 
@@ -307,18 +364,19 @@
 .favorite-comment-cancel-btn:hover,
 .favorite-comment-edit-btn:hover,
 .favorite-comment-delete-btn:hover,
-.favorite-comment-add-btn:hover,
-.favorite-delete-btn:hover {
+.favorite-comment-add-btn:hover {
   transform: translateY(-4px) scale(1.04);
+
   filter: brightness(1.08);
 }
 
 
-/* Delete wrapper */
+/* Delete favorite section */
 
 .favorite-delete-section {
   display: flex;
   justify-content: center;
+
   padding-top: 0.25rem;
 }
 

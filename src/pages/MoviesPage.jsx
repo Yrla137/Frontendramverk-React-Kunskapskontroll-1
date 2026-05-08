@@ -3,7 +3,7 @@ import { getAllMovies} from "../api/dataApi"
 import MovieList from "../components/MovieList"
 
 // Styling //
-import '../MoviesPage.css'
+import "../CSS/MoviesPage.css"
 
 const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
     const [movies, setMovies] = useState([]);

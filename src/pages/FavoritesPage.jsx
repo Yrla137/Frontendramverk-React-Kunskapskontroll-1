@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import FavoriteBtn from "../components/FavoriteBtn"
 
 // Styling //
-import "../FavoritesPage.css"
+import "../CSS/FavoritesPage.css"
+import { Trash2 } from "lucide-react"
 
 const FavoritesPage = ({favorites, updateFavorite, deleteFavorite}) => {
 
@@ -130,13 +132,12 @@ return (
                   </button>
 
                   <button
-                    type="button"
                     className='btn favorite-comment-delete-btn'
                     onClick={() =>
                       updateFavorite(favorite.id, { comment: "" })
                     }
                   >
-                    Delete comment
+                    <Trash2 size={18} />
                   </button>
 
                 </div>
@@ -165,13 +166,11 @@ return (
 
           <div className='favorite-delete-section'>
 
-            <button
-              type="button"
-              className='btn favorite-delete-btn'
-              onClick={() => deleteFavorite(favorite.id)}
-            >
-              Delete favorite
-            </button>
+            <FavoriteBtn
+              movie={favorite}
+              favorites={favorites}
+              addToFavorites={() => deleteFavorite(favorite.id)}
+            />
 
           </div>
 
