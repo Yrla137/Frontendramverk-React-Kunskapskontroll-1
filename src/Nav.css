@@ -1,0 +1,142 @@
+/* Navigation wrapper */
+
+.main-nav {
+  width: 100%;
+
+  position: sticky;
+  top: 0;
+  z-index: 200;
+
+  padding:
+    1rem
+    2rem;
+
+  background:
+    rgba(5, 5, 5, 0.75);
+
+  backdrop-filter: blur(12px);
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.05);
+}
+
+
+/* Navigation list */
+
+.nav-list {
+  list-style: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  flex-wrap: wrap;
+}
+
+
+/* Navigation items */
+
+.nav-item {
+  position: relative;
+}
+
+
+/* Navigation links */
+
+.nav-link {
+  position: relative;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  color: var(--text-main);
+
+  padding:
+    0.6rem
+    1rem;
+
+  border-radius: var(--radius-small);
+
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease,
+    text-shadow 0.3s ease;
+}
+
+
+/* Link hover */
+
+.nav-link:hover {
+  color: #ffffff;
+
+  transform: translateY(-2px);
+
+  text-shadow:
+    0 0 10px rgba(178, 102, 255, 0.8),
+    0 0 18px rgba(255, 23, 68, 0.5);
+}
+
+
+/* Animated underline */
+
+.nav-link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -4px;
+
+  width: 0%;
+  height: 2px;
+
+  transform: translateX(-50%);
+
+  background:
+    linear-gradient(
+      to right,
+      var(--purple-glow),
+      var(--red-glow)
+    );
+
+  transition: width 0.3s ease;
+}
+
+
+.nav-link:hover::after {
+  width: 80%;
+}
+
+
+/* Active route */
+
+.nav-link.active {
+  color: #ffffff;
+
+  text-shadow:
+    0 0 12px rgba(178, 102, 255, 0.8),
+    0 0 20px rgba(255, 23, 68, 0.5);
+}
+
+
+/* Mobile navigation */
+
+@media (max-width: 768px) {
+
+  .main-nav {
+    padding:
+      1rem;
+  }
+
+  .nav-list {
+    gap: 1rem;
+  }
+
+  .nav-link {
+    font-size: 0.95rem;
+    padding:
+      0.5rem
+      0.8rem;
+  }
+}

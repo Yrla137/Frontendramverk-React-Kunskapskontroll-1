@@ -1,0 +1,181 @@
+/* Google font import */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+
+/* Home page layout */
+
+.home-page {
+  min-height: 80vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+
+/* Background glow effects */
+
+.home-page::before {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  top: -100px;
+  left: -100px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 23, 68, 0.18),
+      transparent 70%
+    );
+
+  filter: blur(40px);
+
+  z-index: 0;
+}
+
+
+.home-page::after {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  bottom: -150px;
+  right: -150px;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(106, 13, 173, 0.2),
+      transparent 70%
+    );
+
+  filter: blur(50px);
+
+  z-index: 0;
+}
+
+
+/* Hero section */
+
+.home-hero {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  max-width: 900px;
+
+  padding:
+    4rem
+    2rem;
+
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+/* Hero title */
+
+.home-hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+
+  line-height: 1.1;
+
+  text-transform: uppercase;
+
+  animation: glowPulse 4s ease-in-out infinite;
+
+  max-width: 900px;
+}
+
+
+/* Hero description */
+
+.home-hero-text {
+  max-width: 700px;
+
+  font-size: 1.2rem;
+
+  line-height: 1.7;
+
+  color: var(--text-secondary);
+
+  text-shadow:
+    0 0 8px rgba(255, 255, 255, 0.08);
+}
+
+
+/* Hero button */
+
+.home-hero-btn {
+  padding:
+    1rem
+    2.5rem;
+
+  font-size: 1rem;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-primary),
+      var(--blue-primary)
+    );
+
+  box-shadow:
+    var(--glow-purple),
+    var(--shadow-dark);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  color: var(--text-main);
+
+  backdrop-filter: blur(8px);
+}
+
+
+.home-hero-btn:hover {
+  box-shadow:
+    0 0 18px rgba(178, 102, 255, 0.8),
+    0 0 30px rgba(77, 163, 255, 0.5);
+
+  transform:
+    translateY(-5px)
+    scale(1.06);
+}
+
+
+/* Mobile adjustments */
+
+@media (max-width: 768px) {
+
+  .home-hero {
+    padding:
+      2rem
+      1rem;
+  }
+
+  .home-hero-text {
+    font-size: 1rem;
+  }
+
+  .home-hero-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+}

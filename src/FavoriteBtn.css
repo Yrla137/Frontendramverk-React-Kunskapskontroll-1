@@ -1,0 +1,109 @@
+/* Favorite button wrapper */
+
+.favorite-btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Base button */
+
+.btn {
+  width: 100%;
+  max-width: 240px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+
+  padding: 0.75rem 1rem;
+
+  border: none;
+  border-radius: 14px;
+
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 0.88rem;
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  background: transparent;
+  box-shadow: var(--shadow-dark);
+
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    filter 0.28s ease,
+    background 0.28s ease,
+    opacity 0.28s ease;
+}
+
+
+/* Hover effect */
+
+.btn:hover {
+  transform: translateY(-4px) scale(1.04);
+  filter: brightness(1.08);
+}
+
+
+/* Add button */
+
+.btn--add {
+  background: linear-gradient(135deg, var(--blue-primary), var(--purple-primary));
+  box-shadow:
+    0 0 14px rgba(77, 163, 255, 0.35),
+    0 0 22px rgba(106, 13, 173, 0.22),
+    var(--shadow-dark);
+}
+
+
+/* Remove button */
+
+.btn--remove {
+  background: linear-gradient(135deg, var(--red-primary), #aa0030);
+  box-shadow:
+    0 0 14px rgba(255, 23, 68, 0.35),
+    0 0 22px rgba(122, 0, 24, 0.22),
+    var(--shadow-dark);
+}
+
+
+/* Loading state */
+
+.btn--loading {
+  opacity: 0.9;
+  cursor: wait;
+  transform: scale(0.99);
+}
+
+
+/* Disabled state */
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.75;
+  transform: none;
+}
+
+
+/* Hover glow */
+
+.btn--add:hover {
+  box-shadow:
+    0 0 18px rgba(77, 163, 255, 0.55),
+    0 0 30px rgba(106, 13, 173, 0.32),
+    var(--shadow-dark);
+}
+
+.btn--remove:hover {
+  box-shadow:
+    0 0 18px rgba(255, 23, 68, 0.55),
+    0 0 30px rgba(122, 0, 24, 0.32),
+    var(--shadow-dark);
+}

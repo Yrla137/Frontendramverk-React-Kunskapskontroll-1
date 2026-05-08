@@ -2,6 +2,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { getFavorites } from "./api/dataApi";
 import { addFavoriteApi, deleteFavoriteApi, updateFavoriteApi } from "./api/dataApi";
+import './App.css'
+
 import Home from './pages/Home'
 import MoviesPage from './pages/MoviesPage'
 import Nav from './components/Nav'
@@ -109,20 +111,23 @@ const onResetMovies = () => {
  
 
   return (
-    <div className='App'>
+    <div className='app'>
         
         <Nav
-        className="nav-bar"
         onResetMovies={onResetMovies}
         />
-          <SearchBar
-            className="search-bar"
+        <header className='app-header'>
+           <SearchBar
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
             onSearch={onSearch}
           />
-        <Routes>
-          <Route path='/' element={< Home />}/>
+        </header>
+
+        <main className='app-main'>
+          <Routes>
+          <Route path='/' element={< Home
+          onResetMovies={onResetMovies}/>}/>
           <Route path='/movies' element={< MoviesPage
             addToFavorites={addToFavorites}
             favorites={favorites}
@@ -138,6 +143,7 @@ const onResetMovies = () => {
           deleteFavorite={deleteFavorite}
           updateFavorite={updateFavorite}/>}/>
         </Routes>
+        </main>
 
     </div>
   )

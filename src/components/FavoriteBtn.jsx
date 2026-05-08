@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../FavoriteBtn.css"
 
 const FavoriteBtn = ({movie, favorites, addToFavorites}) => {
 
@@ -12,7 +13,13 @@ const FavoriteBtn = ({movie, favorites, addToFavorites}) => {
   return (
     <div className="favorite-btn-container">
         <button
-        className={`btn ${isFavorite ? "btn--remove" : "btn--add"}`}
+        type="button"
+        data-state={isFavorite ? "remove" : "add"}
+        data-loading={isFavoriteLoading ? "true" : "false"}
+        className={`btn
+            ${isFavorite ? "btn--remove" : "btn--add"}
+            ${isFavoriteLoading ? "btn--loading" : ""}`}
+        
         disabled={isFavoriteLoading}
         onClick={ async (e) => {
             e.stopPropagation()
@@ -28,7 +35,7 @@ const FavoriteBtn = ({movie, favorites, addToFavorites}) => {
             {isFavoriteLoading
             ? "Updating..."
             : isFavorite
-            ? "Remove from favorites❤️"
+            ? "Remove favorite❤️"
             : "Add to favorites❤️"}
         </button>
     </div>

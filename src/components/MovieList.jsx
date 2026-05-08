@@ -1,4 +1,5 @@
 import MovieItem from "../components/MovieItem"
+import '../MovieList.css'
 
 
 const MovieList = ({movies, favorites, addToFavorites}) => {
@@ -14,11 +15,9 @@ const MovieList = ({movies, favorites, addToFavorites}) => {
   return (
         <section className="movie-list-section">
             {movies.map(movie =>
-                <div className="movie-item-container" key={movie.imdbID}>
+                <div className="movie-list-item" key={movie.imdbID}>
 
                     <MovieItem
-                    className="movie-item"
-                    key={movie.imdbID}
                     movie={movie}
                     addToFavorites={addToFavorites}
                     favorites={favorites}/>

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { getAllMovies} from "../api/dataApi"
 import MovieList from "../components/MovieList"
+import '../MoviesPage.css'
 
 const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
     const [movies, setMovies] = useState([]);
@@ -28,12 +29,10 @@ const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
             setError(null)
 
             const data = await getAllMovies(term);
-            console.log(data)
 
             setMovies(data.Search ? data.Search : [])
 
         } catch (error) {
-            console.error(error)
             setError(error.message)
         } finally{
             setLoading(false)
@@ -51,15 +50,23 @@ const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
 
 
     if (loading) {
-        return <div>Loading movies...</div>
+        return <div className='loading-movies-state'>Loading movies...</div>
     }
 
     if (error) {
         return (
-            <div>
-                <h2>Error loading movies</h2>
-                <p>{error}</p>
-                <button onClick={() => fetchMovies(submittedSearchTerm)}>Try again</button>
+            <div className='error-movies-state'>
+                <h2 className='error-movies-title'>Error loading movies</h2>
+                <p className='error-movies-message'>{error}</p>
+                <button
+                className='error-movies-retry-btn'
+                onClick={() => {
+                const retryTerm = submittedSearchTerm
+                ? submittedSearchTerm
+                : randomDefaultTerm()
+
+                fetchMovies(retryTerm)
+            }}>Try again</button>
             </div>
         )
     }
@@ -67,12 +74,13 @@ const MoviesPage = ({addToFavorites, favorites, submittedSearchTerm}) => {
     return (
         <div className="movies-page">
             {submittedSearchTerm ? <h3>Search results...</h3> : <h3>Recommended movies...</h3>}
-            <MovieList className="movie-list"
-            movies={movies}
-            addToFavorites={addToFavorites}
-            favorites={favorites}
-            />
-        {submittedSearchTerm ? <h3>Search results...</h3> : <h3>Recommended movies...</h3>}
+            <div className='movies-page-container'>
+                <MovieList
+                movies={movies}
+                addToFavorites={addToFavorites}
+                favorites={favorites}
+                />
+            </div>
         </div>
     )
 }

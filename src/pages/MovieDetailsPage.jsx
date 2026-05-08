@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import FavoriteBtn from "../components/FavoriteBtn"
+import '../MovieDetailsPage.css'
 
 const MovieDetailsPage = ({favorites, addToFavorites}) => {
   const {id} = useParams()
@@ -34,52 +35,59 @@ const MovieDetailsPage = ({favorites, addToFavorites}) => {
 
 
   if (loading) {
-    return <div>Loading movie details...</div>
+    return <div className='loading-movie-details'>Loading movie details...</div>
   }
 
   if (error) {
     return (
-      <div>
-        <h2>Error loading movie information</h2>
+      <div className='error-movie-details'>
+        <h2 className='error-movie-details-title'>Error loading movie information</h2>
         <p>{error}</p>
-        <button onClick={fetchMovie}>Try Again</button>
+        <button className='error-movie-details-retry-btn'
+        onClick={fetchMovie}>Try Again</button>
         <br />
-        <Link to="/movies">← Back to movies</Link>
+        <Link className='error-movie-details-link' to="/movies">← Back to movies</Link>
       </div>
     );
   }
 
   if (!movie) {
     return (
-      <div>
-        <h2>Movie details not found</h2>
-        <Link to="/movies">← Back to movies</Link>
+      <div className='movie-not-found'>
+        <h2 className='movie-not-found-title'>Movie details not found</h2>
+        <Link className='movie-not-found-link' to="/movies">← Back to movies</Link>
       </div>
     );
   }
 
   return (
-    <div>
+    <div className='movie-details-page'>
 
-         <div className="movie-details-container">
-          <h2>{movie.Title}</h2>
-          <img src={movie.Poster} alt="N/A" />
-            <p>Plot: {movie.Plot}</p>
-            <p>Staring: {movie.Actors}</p>
-            <p>Genre: {movie.Genre}</p>
-            <p>Runtime: {movie.Runtime}</p>
-            <p>Release: {movie.Released}</p>
-            <p>Rating: {movie.Rated}</p>
-            <p>Awards: {movie.Awards}</p>
-            <p>Country: {movie.Country}</p>
-            <p>Language: {movie.Language}</p>
+        <div className='movie-details-container'>
+          <h2 className='movie-details-title'>{movie.Title}</h2>
+          <img className='movie-details-poster' 
+          src={movie.Poster} alt={`${movie.Title} poster`} />
+          <div className='movie-details-info'>
+            <p className='movie-detail-row'>Plot: {movie.Plot}</p>
+            <p className='movie-detail-row'>Staring: {movie.Actors}</p>
+            <p className='movie-detail-row'>Genre: {movie.Genre}</p>
+            <p className='movie-detail-row'>Runtime: {movie.Runtime}</p>
+            <p className='movie-detail-row'>Release: {movie.Released}</p>
+            <p className='movie-detail-row'>Rating: {movie.Rated}</p>
+            <p className='movie-detail-row'>Awards: {movie.Awards}</p>
+            <p className='movie-detail-row'>Country: {movie.Country}</p>
+            <p className='movie-detail-row'>Language: {movie.Language}</p>
           </div>
+        </div>
 
-          <FavoriteBtn
+        <div className='movie-details-favorite-btn'>
+            <FavoriteBtn
             movie={movie}
             favorites={favorites}
             addToFavorites={addToFavorites}
           />
+
+        </div>
 
     </div>
   )
